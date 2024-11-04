@@ -37,14 +37,6 @@
   --space-09: clamp(5rem, 9vw, 7rem); /* 80px to 112px */
   --space-10: clamp(6rem, 10vw, 8rem); /* 96px to 128px */
 
-  --width: clamp(30rem, 52vw, 60rem), 100% - var(--gutter);
-  --gutter: clamp(1rem, 4vw, 2rem);
-  --content: min(var(--width) * 2);
-  --content-inset: min(var(--width));
-  --feature: minmax(0, 12vw);
-  --popout: minmax(0, 2rem);
-  --fluid: minmax(var(--gutter), 1fr);
-
   @include util.css-vars(var.$color-schemes, "root", "--color-");
 
   &,

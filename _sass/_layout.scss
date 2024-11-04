@@ -1,6 +1,15 @@
 @use "helpers/functions" as func;
 @use "helpers/mixins" as util;
-@use "variables" as var;
+
+:root {
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --width: clamp(30rem, 52vw, 60rem);
+  --fluid: minmax(var(--gutter), 1fr);
+  --feature: minmax(0, 12vw);
+  --popout: minmax(0, 2rem);
+  --content: min(var(--width), 100% - var(--gutter) * 2);
+  --content-inset: min(var(--width), 100% - var(--gutter));
+}
 
 .grid-column {
   display: grid;
