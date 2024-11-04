@@ -71,14 +71,14 @@ comments:
   disqus: # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: ""
   giscus: # For more settings see https://giscus.app/
-    repo: "sionta/dblog"
-    repo_id: "R_kgDOMG6U4A"
+    repo: "sionta/jekyll-theme-dblog"
+    repo-id: "R_kgDONKKDjQ"
     category: "Q&A"
-    category_id: "DIC_kwDOMG6U4M4CjkyH"
+    category-id: "DIC_kwDONKKDjc4Cj9kN"
   utterances: # For more setting see to https://utteranc.es/
-    repo: ""
+    repo: "sionta/jekyll-theme-dblog"
     label: ""
-    issue_term: ""
+    issue-term: ""
 
 # PLEASE DONT MODIFY AFTER THIS LINE ********************************
 
