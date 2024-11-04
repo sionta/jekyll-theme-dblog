@@ -1,0 +1,182 @@
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+@use "helpers/functions" as func;
+
+$color-dark: #0e0f11;
+$color-light: #ffffff;
+
+$color-base00: #ffffff;
+$color-base01: #f5f7fa;
+$color-base02: #e4e8f1;
+$color-base03: #ccd5e0;
+$color-base04: #9faec5;
+$color-base05: #738295;
+$color-base06: #4d596b;
+$color-base07: #2f3b50;
+$color-base08: #1c2433;
+$color-base09: #111827;
+$color-base10: color.mix(#0a0f1b, #010411);
+
+$color-gray-100: #f8f9fa;
+$color-gray-200: #e9ecef;
+$color-gray-300: #dee2e6;
+$color-gray-400: #ced4da;
+$color-gray-500: #adb5bd;
+$color-gray-600: #6c757d;
+$color-gray-700: #495057;
+$color-gray-800: #343a40;
+$color-gray-900: #212529;
+
+$color-black: #000000;
+$color-gray: #6c757d;
+$color-white: #ffffff;
+
+$color-red: #dc3545;
+$color-pink: #d63384;
+$color-green: #198754;
+$color-teal: #20c997;
+$color-blue: #0d6efd;
+$color-cyan: #0dcaf0;
+$color-indigo: #6610f2;
+$color-purple: #6f42c1;
+$color-orange: #fd7e14;
+$color-yellow: #ffc107;
+
+$color-schemes: (
+  "root": (
+    "base00": $color-base00,
+    "base01": $color-base01,
+    "base02": $color-base02,
+    "base03": $color-base03,
+    "base04": $color-base04,
+    "base05": $color-base05,
+    "base06": $color-base06,
+    "base07": $color-base07,
+    "base08": $color-base08,
+    "base09": $color-base09,
+    "base10": $color-base10,
+
+    "gray-100": $color-gray-100,
+    "gray-200": $color-gray-200,
+    "gray-300": $color-gray-300,
+    "gray-400": $color-gray-400,
+    "gray-500": $color-gray-500,
+    "gray-600": $color-gray-600,
+    "gray-700": $color-gray-700,
+    "gray-800": $color-gray-800,
+    "gray-900": $color-gray-900,
+
+    "dark": $color-dark,
+    "light": $color-light,
+    "black": $color-black,
+    "gray": $color-gray,
+    "white": $color-white,
+
+    "red": $color-red,
+    "pink": $color-pink,
+    "green": $color-green,
+    "teal": $color-teal,
+    "blue": $color-blue,
+    "cyan": $color-cyan,
+    "indigo": $color-indigo,
+    "purple": $color-purple,
+    "orange": $color-orange,
+    "yellow": $color-yellow,
+  ),
+  "light": (
+    "background-rgb": func.rgb-value($color-light),
+    "background": $color-light,
+    "border-rgb": func.rgb-value(#e2e3e7),
+    "border": #e2e3e7,
+    "glare": #f4f6f8,
+    "shade": #6b7084,
+    "muted": #6b6b6b,
+    "disabled": #e9ecef,
+    "text-rgb": func.rgb-value($color-dark),
+    "text": $color-dark,
+    "primary": #4c54d2,
+    "secondary": #565a9c,
+    "tertiary": #404375,
+  ),
+  "dark": (
+    "background-rgb": func.rgb-value($color-dark),
+    "background": $color-dark,
+    "border-rgb": func.rgb-value(#2e3039),
+    "border": #2e3039,
+    "glare": #1a1c20,
+    "shade": #8c90a1,
+    "muted": #6c757d,
+    "disabled": #212529,
+    "text-rgb": func.rgb-value($color-light),
+    "text": $color-light,
+    "primary": #737ade,
+    "secondary": #565a9c,
+    "tertiary": #404375,
+  ),
+);
+
+$font-sizes: (
+  base: (
+    base: 1rem,
+    clamp: clamp(1rem, 2vw, 1.125rem),
+    heading: clamp(2rem, 6vw, 3rem),
+  ),
+  xs: (
+    base: 0.875rem,
+    clamp: clamp(0.875rem, 2vw, 1rem),
+    heading: clamp(1rem, 1.75vw, 1.25rem),
+  ),
+  sm: (
+    base: 1rem,
+    clamp: clamp(1rem, 3vw, 1.125rem),
+    heading: clamp(1.125rem, 2vw, 1.5rem),
+  ),
+  md: (
+    base: 1.125rem,
+    clamp: clamp(1.125rem, 4vw, 1.25rem),
+    heading: clamp(1.25rem, 2.5vw, 1.75rem),
+  ),
+  lg: (
+    base: 1.25rem,
+    clamp: clamp(1.25rem, 5vw, 1.5rem),
+    heading: clamp(1.5rem, 3vw, 2rem),
+  ),
+  xl: (
+    base: 1.5rem,
+    clamp: clamp(1.5rem, 6vw, 2rem),
+    heading: clamp(1.75rem, 3.5vw, 2.25rem),
+  ),
+  xxl: (
+    base: 2rem,
+    clamp: clamp(2rem, 7vw, 3rem),
+    heading: clamp(2rem, 4vw, 2.5rem),
+  ),
+);
+
+$breakpoints: (
+  sm: (
+    breakpoint: 576px,
+    viewport: 510px,
+  ),
+
+  md: (
+    breakpoint: 768px,
+    viewport: 700px,
+  ),
+
+  lg: (
+    breakpoint: 1024px,
+    viewport: 950px,
+  ),
+
+  xl: (
+    breakpoint: 1280px,
+    viewport: 1200px,
+  ),
+
+  xxl: (
+    breakpoint: 1536px,
+    viewport: 1450px,
+  ),
+);

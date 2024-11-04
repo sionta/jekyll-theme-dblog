@@ -1,0 +1,33 @@
+/**
+ * Theme toggle
+ */
+.theme-toggle {
+  display: inline-block;
+  width: max-content;
+
+  [type="checkbox"] {
+    display: none;
+  }
+
+  [for="mode-theme"] {
+    cursor: pointer;
+
+    [data-theme-value="light"] {
+      display: inline;
+    }
+
+    [data-theme-value="dark"] {
+      display: none;
+    }
+  }
+
+  [type="checkbox"]:checked + [for="mode-theme"] {
+    [data-theme-value="light"] {
+      display: none;
+    }
+
+    [data-theme-value="dark"] {
+      display: inline;
+    }
+  }
+}

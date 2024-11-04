@@ -1,0 +1,6 @@
+*.min.*
+*.svg
+*.md
+**/fonts/
+**/lib/
+**/vendor/

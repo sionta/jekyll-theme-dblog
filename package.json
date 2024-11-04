@@ -1,0 +1,28 @@
+{
+  "name": "jekyll-theme-dblog",
+  "version": "1.0.0",
+  "author": "Andre Attamimi",
+  "license": "MIT",
+  "description": "Just read, write, and share your story.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "pwsh -nop -ex unrestricted -f ./script/tool.ps1 build || bash ./script/tool.sh build",
+    "serve": "pwsh -nop -ex unrestricted -f ./script/tool.ps1 serve || bash ./script/tool.sh serve"
+  },
+  "keywords": [
+    "blog",
+    "theme",
+    "jekyll",
+    "jekyll-theme"
+  ],
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^3.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}

@@ -1,0 +1,27 @@
+@use "sass:map";
+
+@mixin css-vars($map, $key, $prefix: "--") {
+  @if map.get($map, $key) {
+    @each $key, $value in map.get($map, $key) {
+      #{$prefix}#{$key}: #{$value};
+    }
+  } @else {
+    @error "Error map.get($map, $key)";
+  }
+}
+
+@mixin media-query($bp: "md", $vw: "max") {
+  $media: "screen";
+
+  @if $bp == "sm" {
+    $media: "(#{$vw}-width: 576px)";
+  } @else if $bp == "md" {
+    $media: "(#{$vw}-width: 768px)";
+  } @else if $bp == "lg" {
+    $media: "(#{$vw}-width: 1080px)";
+  }
+
+  @media #{$media} {
+    @content;
+  }
+}

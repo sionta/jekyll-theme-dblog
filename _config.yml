@@ -1,0 +1,175 @@
+title: dBlog # The title of your site, shown in the browser tab and used in meta tags for SEO.
+# This description appears in the <meta> tag for SEO purposes and helps with search engine rankings.
+description: >-
+  Write an awesome description for your new site here. You can edit this line
+  in `_config.yml`. It will appear in your document head meta (for Google search
+  results) and in your feed.xml site description.
+url: "https://jekyll-theme-dblog.vercel.app" # The full base URL of your site (e.g., https://example.com). Required for generating absolute links.
+baseurl: "" # If your site is hosted in a subfolder (e.g., /blog), define the subpath here. Otherwise, leave it empty.
+
+image: "/assets/img/logos/logo.svg"
+
+# Configuration for the hero section, often the main banner on the homepage.
+# If enabled `true` and not defined heading and summary by default, use `site.title` and `site.description`.
+hero:
+  heading: >- # (h1) Main heading text for the hero section.
+    Jekyll theme dBlog.
+  summary: >- # (p): A short description shown below the hero heading.
+    Just read, write, and share your story.
+
+navbar:
+  - title: "Articles"
+    url: "/blog/"
+  - title: "About"
+    url: "/about/"
+
+#copyright: >-
+#  &copy; :year :title. All Rights Reserved. Designed with love by
+#  <a href="https://github.com/sionta">Andre Attamimi</a>
+
+# for "Edit this page" on GitHub
+repository:
+  repo: sionta/jekyll-theme-dblog
+  branch: main
+
+# For SEO and default post author
+author: &DEFAULT_AUTHOR
+  name: "Andre Attamimi"
+  twitter: "r007mmxv"
+  email: "rumatua0@gmail.com"
+  url: "https://github.com/sionta"
+  picture: "/assets/images/logo.svg"
+
+# Social media links. Icons are from Tabler Icons (https://tabler.io/icons)
+# If icon not defined by default use 'brand-*' if exist.
+social_media:
+  - { name: "Subcribe", icon: "rss", url: "/feed.xml" }
+  - { name: "Email", icon: "mail", url: "mailto:info@dblog.com" }
+  - { name: "GitHub", url: "https://github.com/dblog" }
+  - { name: "Mastodon", url: "https://mastodon.social/@dblog" }
+  - { name: "Twitter", icon: "brand-x", url: "https://twitter.com/dblog" }
+
+social_share:
+  - facebook
+  - twitter
+  - mastodon
+  # - reddit
+  # - linkedin
+  # - instagram
+  # - whatsapp
+  # - pinterest
+  # - snapchat
+  # - telegram
+  # - threads
+  # - tiktok
+  # - vk
+  # - email
+
+# Post comments
+comments:
+  provider: "giscus" # (e.g. disqus), The provider settings below:
+  disqus: # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: ""
+  giscus: # For more settings see https://giscus.app/
+    repo: "sionta/dblog"
+    repo_id: "R_kgDOMG6U4A"
+    category: "Q&A"
+    category_id: "DIC_kwDOMG6U4M4CjkyH"
+  utterances: # For more setting see to https://utteranc.es/
+    repo: ""
+    label: ""
+    issue_term: ""
+
+# PLEASE DONT MODIFY AFTER THIS LINE ********************************
+
+toc:
+  min_level: 1
+  max_level: 2
+  ordered_list: true
+  no_toc_section_class:
+    - "no_toc"
+    - "no-toc"
+  list_id: "toc-list"
+  list_class: "toc-list"
+  sublist_class: "toc-sublist"
+  item_class: "toc-item"
+  item_prefix: "toc-"
+
+# Markdown engine configuration, using Kramdown with GitHub-Flavored Markdown (GFM) support.
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  toc_levels: 1..3
+  parse_block_html: true
+
+  # Syntax highlighting configuration for code blocks using the Rouge highlighter.
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+      line_class: lineno
+      table_class: rouge-table
+      gutter_class: rouge-gutter
+      code_class: rouge-code
+
+# Pagination configuration for listing posts.
+paginate: 8
+paginate_path: "/blog/page:num/"
+
+# Default values for posts. You can override these settings in individual post front matter.
+defaults:
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+      permalink: "/blog/:title/"
+      author:
+        <<: *DEFAULT_AUTHOR
+      toc: false # Disable the table of contents by default in posts.
+      math: false # Disable MathJax for math rendering by default.
+      diagram: false # Disable Mermaid.js for diagram rendering by default.
+      comments: false # Disable comments by default. To enable, set this to true and configure a comments provider.
+      # featured: false # Disable featured post by default. To enable set to `true`
+
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  # layouts:
+  #   category: category
+  #   tag: tag
+  permalinks:
+    tag: /archives/tags/:name/
+    category: /archives/categories/:name/
+
+# Theme settings
+theme: jekyll-theme-dblog # The theme used for the site.
+
+# Enforce stricter front matter rules to prevent errors in the site build.
+strict_front_matter: true # Ensures that all posts and pages have valid front matter.
+
+# SASS/SCSS settings for styling
+sass:
+  style: compressed # Compress the compiled CSS to reduce file size.
+
+# Files and directories to exclude from the site build process.
+exclude:
+  - "*.gemspec"
+  - "script/"
+  - "vendor/"
+  - "test/"
+  - "tools/"
+  - "tool/"
+  - "node_modules/"
+  - "vercel.json"
+  - "package*.json"
+  - "gulpfile.js"
+  - "LICENSE"
+  - "README.md"

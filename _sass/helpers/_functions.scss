@@ -1,0 +1,23 @@
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+
+@function unit-relative($value, $root: "rem") {
+  $unit-base: if($root == "rem", 1rem, 1em);
+  $unit-name: unit($value);
+
+  @if $unit-name == "px" {
+    @return math.div($value, 16px) * $unit-base;
+  } @else if $unit-name == "%" {
+    @return math.div($value, 100) * $unit-base;
+  } @else {
+    @return $value;
+  }
+}
+
+@function rgb-value($color) {
+  $red: color.channel($color, "red", $space: rgb);
+  $green: color.channel($color, "green", $space: rgb);
+  $blue: color.channel($color, "blue", $space: rgb);
+  @return #{$red}, #{$green}, #{$blue};
+}

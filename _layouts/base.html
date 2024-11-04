@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+    <div class="grid-breakout">
+      <header class="fluid grid-breakout site-header">
+        <div class="feature">
+          <nav class="navbar">
+            <a
+              class="logo"
+              href="{{ site.url | default: '/' | absolute_url }}"
+              aria-label="Homepage"
+              title="{{ site.title }}"
+              rel="noopener follow"
+            >
+              {{- site.title -}}
+            </a>
+            <ul class="menu">
+              {% for item in site.navbar %}
+                {% if page.url == item.url %}
+                  {% assign link_class = 'class="current"' %}
+                  {% assign link_aria = 'aria-current="page"' %}
+                {% else %}
+                  {% assign link_class = '' %}
+                  {% assign link_attrs = '' %}
+                {% endif %}
+                <li class="menu-item">
+                  <a {{ link_class }} {{ link_aria }} href="{{ item.url | absolute_url }}" title="{{ item.title }}">
+                    {{- item.title -}}
+                  </a>
+                </li>
+              {% endfor %}
+              <li class="menu-item has-action">
+                {% include theme-toggle.html type='checkbox' %}
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="fluid site-content">
+        {{ content }}
+      </main>
+
+      <footer class="fluid grid-breakout pad-b site-footer">
+        <div class="feature">
+          <p class="copyright" itemprop="copyrightNotice">
+            &copy; {{ site.time | date: '%Y' }}
+            <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+              <span itemprop="name">{{- site.title | append: '.' | strip -}}</span>
+            </span>
+            All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{%- assign image = include.image | default: page.image -%}
+{%- assign class = include.class | prepend: 'feature figure ' | strip -%}
+{%- assign img_src = image.src | default: image -%}
+{%- assign img_alt = image.alt | default: page.title | default: '' -%}
+{%- assign img_cap = image.cap | default: image.caption -%}
+{%- if img_src -%}
+  <figure class="{{ class }}" itemprop="associatedMedia" itemscope itemtype="https://schema.org/ImageObject">
+    <img class="image" src="{{ img_src }}" alt="{{ img_alt }}" loading="lazy">
+    {%- if img_cap -%}
+      <figcaption class="caption">{{ img_cap }}</figcaption>
+    {%- endif -%}
+  </figure>
+{%- endif -%}

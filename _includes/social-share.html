@@ -1,0 +1,133 @@
+{%- assign social_share = site.social_share -%}
+{%- assign social_link = page.url | absolute_url -%}
+{%- assign social_title = page.title | url_encode -%}
+{%- capture social_excerpt -%}{%- include summary.html data=page excerpt=true short=true -%}{%- endcapture -%}
+<div class="social-share" aria-label="Share">
+  <h3>Share This Article</h3>
+  <ul>
+    {%- for item in social_share -%}
+      {%- case item -%}
+        {%- when 'facebook' -%}
+          <li>
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Facebook</a
+            >
+          </li>
+        {%- when 'twitter' -%}
+          <li>
+            <a
+              href="https://twitter.com/intent/tweet?url={{- social_link -}}&text={{- social_title -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Twitter</a
+            >
+          </li>
+        {%- when 'mastodon' -%}
+          <li>
+            <a
+              href="https://mstdn.social/share?url={{- social_link -}}&text={{- social_title -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Mastodon</a
+            >
+          </li>
+        {%- when 'reddit' -%}
+          <li>
+            <a
+              href="https://www.reddit.com/submit?url={{- social_link -}}&title={{- social_title -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Reddit</a
+            >
+          </li>
+        {%- when 'linkedin' -%}
+          <li>
+            <a
+              href="https://www.linkedin.com/sharing/share-offsite/?url={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on LinkedIn</a
+            >
+          </li>
+        {%- when 'instagram' -%}
+          <li>
+            <a
+              href="https://www.instagram.com/sharing/share-offsite/?url={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Instagram</a
+            >
+          </li>
+        {%- when 'whatsapp' -%}
+          <li>
+            <a
+              href="https://api.whatsapp.com/send?text={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on WhatsApp</a
+            >
+          </li>
+        {%- when 'pinterest' -%}
+          <li>
+            <a
+              href="https://pinterest.com/pin/create/button/?url={{- social_link -}}&media=IMAGE_URL&description={{- social_excerpt | strip | strip_newlines | url_encode -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Pinterest</a
+            >
+          </li>
+        {%- when 'snapchat' -%}
+          <li>
+            <a
+              href="https://www.snapchat.com/share?text={{- social_title -}}&url={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Snapchat</a
+            >
+          </li>
+        {%- when 'telegram' -%}
+          <li>
+            <a
+              href="https://telegram.me/share/url?url={{- social_link -}}&text={{- social_title -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Telegram</a
+            >
+          </li>
+        {%- when 'threads' -%}
+          <li>
+            <a
+              href="https://www.threads.net/share?url={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share on Threads</a
+            >
+          </li>
+        {%- when 'tiktok' -%}
+          <li>
+            <a href="https://www.tiktok.com/share?url={{- social_link -}}" target="_blank" rel="noopener noreferrer"
+              >Share on TikTok</a
+            >
+          </li>
+        {%- when 'vk' -%}
+          <li>
+            <a href="https://vk.com/share.php?url={{- social_link -}}" target="_blank" rel="noopener noreferrer"
+              >Share on VK</a
+            >
+          </li>
+        {%- when 'email' -%}
+          <li>
+            <a
+              href="mailto:?subject={{- social_title -}}&body={{- social_link -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Share via Email</a
+            >
+          </li>
+      {%- endcase -%}
+    {%- endfor -%}
+  </ul>
+</div>

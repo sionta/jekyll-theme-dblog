@@ -1,0 +1,14 @@
+{% capture toc_content %}{{ include.html | default: content | toc_only }}{% endcapture %}
+{% if page.toc == true and toc_content %}
+  {% if include.type == 'sidebar' %}
+    <section class="toc hide-on-mb">
+      <h3 class="toc-title">Table of Contents</h3>
+      <nav class="toc-content" role="doc-toc">{{ toc_content }}</nav>
+    </section>
+  {% else %}
+    <details class="toc only-on-mb">
+      <summary class="toc-title">Table of Contents</summary>
+      <nav class="toc-content" role="doc-toc">{{ toc_content }}</nav>
+    </details>
+  {% endif %}
+{% endif %}

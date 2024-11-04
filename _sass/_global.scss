@@ -1,0 +1,302 @@
+@use "sass:map";
+@use "helpers/functions" as func;
+@use "helpers/mixins" as util;
+@use "variables" as var;
+
+:root {
+  /* Font Family Headings */
+  --font-sans: "Open Sans", Lato, system-ui, -apple-system, sans-serif;
+  --font-mono: "Source Code Pro", Consolas, "Roboto Mono", monospace;
+  --font-serif: "Source Serif 4", Merriweather, Georgia, Cambria,
+    "Times New Roman", serif;
+  --font-display: "Playfair Display", var(--font-serif);
+
+  /* Font Size Clamp */
+  --font-size: clamp(1rem, 2vw, 1.125rem); /* Base */
+  --font-size-xxs: clamp(0.75rem, 1vw, 0.875rem); /* 12px to 14px */
+  --font-size-xs: clamp(0.875rem, 2vw, 1rem); /* 14px to 16px */
+  --font-size-sm: clamp(1rem, 3vw, 1.125rem); /* 16px to 18px */
+  --font-size-md: clamp(1.125rem, 4vw, 1.25rem); /* 18px to 20px */
+  --font-size-lg: clamp(1.25rem, 5vw, 1.5rem); /* 20px to 24px */
+  --font-size-xl: clamp(1.5rem, 6vw, 2rem); /* 24px to 32px */
+  --font-size-xxl: clamp(2rem, 7vw, 3rem); /* 32px to 48px */
+  --font-size-xxxl: clamp(3rem, 8vw, 4rem); /* 48px to 64px */
+  --font-size-huge: clamp(4rem, 9vw, 5rem); /* 64px to 80px */
+  --font-size-enormous: clamp(5rem, 10vw, 6rem); /* 80px to 96px */
+
+  /* Spacing Clamp */
+  --space-unit: clamp(1rem, 4vw, 1.25rem); /* Base */
+  --space-01: clamp(0.25rem, 1vw, 0.5rem); /* 4px to 8px */
+  --space-02: clamp(0.5rem, 2vw, 1rem); /* 8px to 16px */
+  --space-03: clamp(0.75rem, 3vw, 1.5rem); /* 12px to 24px */
+  --space-04: clamp(1rem, 4vw, 2rem); /* 16px to 32px */
+  --space-05: clamp(1.5rem, 5vw, 3rem); /* 24px to 48px */
+  --space-06: clamp(2rem, 6vw, 4rem); /* 32px to 64px */
+  --space-07: clamp(3rem, 7vw, 5rem); /* 48px to 80px */
+  --space-08: clamp(4rem, 8vw, 6rem); /* 64px to 96px */
+  --space-09: clamp(5rem, 9vw, 7rem); /* 80px to 112px */
+  --space-10: clamp(6rem, 10vw, 8rem); /* 96px to 128px */
+
+  --width: clamp(30rem, 52vw, 60rem), 100% - var(--gutter);
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --content: min(var(--width) * 2);
+  --content-inset: min(var(--width));
+  --feature: minmax(0, 12vw);
+  --popout: minmax(0, 2rem);
+  --fluid: minmax(var(--gutter), 1fr);
+
+  @include util.css-vars(var.$color-schemes, "root", "--color-");
+
+  &,
+  [data-theme="light"] {
+    @include util.css-vars(var.$color-schemes, "light", "--color-");
+  }
+
+  &[data-theme="dark"] {
+    @include util.css-vars(var.$color-schemes, "dark", "--color-");
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme]) {
+      @include util.css-vars(var.$color-schemes, "dark", "--color-");
+    }
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.15;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+main {
+  font-size: clamp(1.125rem, 4vw, 1.25rem);
+  line-height: 1.5;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+abbr {
+  cursor: help;
+}
+
+textarea,
+select,
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.15;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+blockquote,
+details,
+fieldset,
+table {
+  margin-bottom: var(--space-unit);
+}
+
+h1 {
+  font-size: 2.5rem; // 40px
+}
+
+h2 {
+  font-size: 2rem; // 32px
+}
+
+h3 {
+  font-size: 1.75rem; // 28px
+}
+
+h4 {
+  font-size: 1.5rem; // 24px
+}
+
+h5 {
+  font-size: 1.25rem; // 20px
+}
+
+h6 {
+  font-size: 1rem; // 16px
+}
+
+hr {
+  border: 1px solid currentColor;
+  margin-block: var(--space-unit);
+}
+
+dd,
+ul,
+ol {
+  margin-left: var(--space-unit);
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: underline solid var(--color-primary);
+  text-underline-offset: 0.2ex;
+  transition: 0.3s ease;
+
+  &:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  @include util.media-query("md", "max") {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.969rem;
+  line-height: 1.5;
+}
+
+pre,
+code,
+kbd {
+  background-color: var(--color-glare);
+}
+
+code {
+  border: 1px solid var(--color-glare);
+  padding: 2px 5px;
+}
+
+kbd {
+  border: 1px solid var(--color-text);
+  border-bottom-width: 2px;
+  font-weight: 700;
+  padding: 4px 8px;
+}
+
+pre {
+  line-height: 1.6;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  padding: var(--space-unit);
+  overflow-x: auto;
+  scrollbar-width: thin;
+
+  pre,
+  code,
+  table,
+  td {
+    background: none;
+    border-radius: 0;
+    border: none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  &:has(table) {
+    border-radius: 0;
+    padding: 0;
+
+    table {
+      border-collapse: collapse;
+    }
+
+    tbody {
+      display: block;
+    }
+
+    tr {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+
+    td {
+      display: block;
+      padding-block: var(--space-unit);
+
+      pre {
+        overflow-x: hidden;
+        padding-inline: var(--space-unit);
+      }
+
+      &:first-child {
+        background-color: var(--color-background);
+        border-right: 1px solid var(--color-border);
+
+        text-align: right;
+        width: max-content;
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+
+        position: sticky;
+        left: 0;
+        align-self: flex-start;
+
+        pre {
+          padding-inline: var(--space-unit) calc(var(--space-unit) * 0.65);
+        }
+      }
+
+      &:last-child {
+        width: inherit;
+
+        pre {
+          padding-inline: calc(var(--space-unit) * 0.65) var(--space-unit);
+        }
+      }
+    }
+  }
+}

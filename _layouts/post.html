@@ -1,0 +1,88 @@
+---
+layout: base
+---
+{%- assign date_format = site.date_format | default: '%b %d, %Y' -%}
+{%- assign page_modified = page.modified_at | default: page.last_modified_at -%}
+{%- assign page_summary = page.summary | default: page.description -%}
+{%- assign page_author = page.author | default: site.author -%}
+{%- assign read_time = page.content | number_of_words | divided_by: 180 -%}
+{%- assign page_image = page.image.src | default: page.image -%}
+{%- assign page_image_alt = page.image.alt | default: page.title -%}
+{%- assign page_tags = page.tag | default: page.tags -%}
+{%- assign page_categories = page.category | default: page.categories -%}
+{%- assign page_repo = site.repository.repo -%}
+{%- assign page_branch = site.repository.branch -%}
+
+<article
+  class="grid-breakout article post"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  itemid="{{ page.url | absolute_url }}"
+>
+  <header class="fluid grid-breakout pad-b header">
+    <div class="feature banner">
+      <meta itemprop="keywords" content="{{ page_tags | join: ', ' }}, {{ page_categories | join: ', ' }}">
+      <h1 class="heading" itemprop="headline">{{ page.title }}</h1>
+      {%- if page_summary -%}
+        <p class="summary" itemprop="description">{{- page_summary -}}</p>
+      {%- endif -%}
+      <div class="metadata">
+        {%- if page_author -%}
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            {%- if page_author.name and page_author.url -%}
+              <a itemprop="url" href="{{ page_author.url | relative_url }}">
+                <span itemprop="name">{{ page_author.name }}</span>
+              </a>
+            {%- else -%}
+              <span itemprop="name">{{ page_author }}</span>
+            {%- endif -%}
+          </span>
+          <span class="dot">·</span>
+        {%- endif -%}
+        <time class="date" itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+          {{- page.date | date: date_format -}}
+        </time>
+        {%- if page_modified -%}
+          <span class="dot">·</span>
+          <time class="date" itemprop="dateModified" datetime="{{ page_modified | date_to_xmlschema }}">
+            {{- page_modified | date: date_format -}}
+          </time>
+        {%- endif -%}
+        {%- if read_time > 0 -%}
+          <span class="dot">·</span>
+          <span itemprop="timeRequired" content="PT{{ read_time }}M" class="read-time">
+            {{- read_time | append: ' min read' -}}
+          </span>
+        {%- endif -%}
+        {%- if page_repo and page_branch -%}
+          <a
+            class="edit-page"
+            href="https://github.com/{{- page_repo -}}/edit/{{- page_branch -}}/{{- page.path -}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Edit this page</a
+          >
+        {%- endif -%}
+      </div>
+    </div>
+  </header>
+  {%- if page.image -%}
+    <figure
+      class="fluid grid-breakout figure"
+      itemprop="associatedMedia"
+      itemscope
+      itemtype="https://schema.org/ImageObject"
+    >
+      <img class="feature image" src="{{ page_image | relative_url }}" alt="{{ page_image_alt }}" loading="lazy">
+      <meta itemprop="url" content="{{ page_image | absolute_url }}">
+      {%- comment -%} <meta itemprop="width" content="800"> {%- endcomment -%}
+      {%- comment -%} <meta itemprop="height" content="600"> {%- endcomment -%}
+    </figure>
+  {%- endif -%}
+  <section class="content mrg-b article-body" itemprop="articleBody">
+    {{ content }}
+  </section>
+  {%- include social-share.html -%}
+  {%- include pagination.html -%}
+  {%- include comments.html -%}
+</article>
