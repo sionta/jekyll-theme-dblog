@@ -5,6 +5,7 @@
   "license": "MIT",
   "description": "Just read, write, and share your story.",
   "main": "gulpfile.js",
+  "type": "module",
   "scripts": {
     "build": "pwsh -nop -ex unrestricted -f ./script/tool.ps1 build || bash ./script/tool.sh build",
     "serve": "pwsh -nop -ex unrestricted -f ./script/tool.ps1 serve || bash ./script/tool.sh serve"
