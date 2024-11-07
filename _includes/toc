@@ -1,6 +1,9 @@
+{% assign toc_title = include.title | default: 'Table of Contents' %}
 <!-- prettier-ignore -->
-<nav class="toc toc-markdown" markdown="1" role="doc-toc" aria-label="Table of Content">
-  <h4 class="toc-title">Table of Contents</h4>
+<details class="toc-markdown"{% if include.open %} open{% endif %}>
+  <summary class="toc-title">{{ toc_title }}</summary>
+  <nav markdown="1" role="doc-toc" aria-label="Table of Content">
   * Auto generated table of contents
   {:toc .toc-list }
-</nav>
+  </nav>
+</details>

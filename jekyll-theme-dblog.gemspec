@@ -9,13 +9,23 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/sionta/jekyll-theme-dblog'
   spec.license       = 'MIT'
 
-  spec.metadata['plugin_type'] = 'theme'
+  spec.metadata = {
+    'homepage_uri' => 'https://sionta.github.io/jekyll-theme-dblog',
+    'source_code_uri' => spec.homepage,
+    'bug_tracker_uri' => "#{spec.homepage}/issues",
+    'changelog_uri' => "#{spec.homepage}/releases",
+    'documentation_uri' => "#{spec.homepage}/#readme",
+    'wiki_uri' => "#{spec.homepage}/wiki",
+    'plugin_type' => 'theme'
+  }
 
   spec.files = `git ls-files -z`.split("\x0").select do |f|
     f.match(%r{^(assets|_(data|includes|layouts|sass)/|(LICENSE|README|CHANGELOG)((\.(txt|md|markdown)|$)))}i)
   end
 
-  spec.required_ruby_version = '~> 3.1' # 3.2.4-1
+  spec.required_ruby_version = '~> 3.1'
+  spec.add_development_dependency 'bundler'
+  # spec.add_development_dependency 'jekyll-admin'
 
   spec.add_runtime_dependency 'jekyll', '~> 4.3'
   spec.add_runtime_dependency 'jekyll-feed', '~> 0.17'
@@ -26,5 +36,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'jekyll-seo-tag', '~> 2.8'
   spec.add_runtime_dependency 'jekyll-sitemap', '~> 1.4'
   spec.add_runtime_dependency 'jemoji', '~> 0.13'
-  # spec.add_development_dependency 'jekyll-admin', '~> 0.11'
 end

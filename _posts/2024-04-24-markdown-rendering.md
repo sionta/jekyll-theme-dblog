@@ -1,12 +1,15 @@
 ---
 layout: post
-title: "Complete Guide to Markdown Test Rendering"
+title: Complete Guide to Markdown Test Rendering
 description: A quick overview of all the Markdown syntax elements
 categories: [test]
 tags: [jekyll, markdown]
+author: [sionta]
 image:
-    src: /assets/images/posts/markdown-thumb.png
-    alt: Image by https://culturedcode.com
+  path: /assets/images/posts/markdown-thumb.png
+  #width: 1280
+  #height: 720
+  alt: Thumbnail Post
 featured: true
 comments: true
 diagram: true
@@ -22,6 +25,8 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 {:.alert.alert-note .no-title}
 
 <!-- markdownlint-disable MD022 MD025 MD033 MD036 -->
+
+{% include toc title='Table of Contents' open=false %}
 
 ## Basic Features
 
@@ -203,9 +208,17 @@ Table with HTML tag elements:
 
 ### Images
 
-#### Image to center
+#### Feature breakout
 
-Do sit commodo fugiat irure sit cillum laboris ut mollit consectetur pariatur sint. Cupidatat quis irure aliqua aliqua labore ex ad dolor. ![Image on center]({{ '/assets/images/512x512.svg' | relative_url }}){:.img.center width='280'} Veniam quis ad esse pariatur sit ipsum adipisicing laboris eu pariatur. Veniam sint nisi ad veniam laborum voluptate. Esse irure incididunt sint officia fugiat nulla velit ut laborum amet laborum.
+A Feature Breakout (now with Content inner width)
+
+{% include figure type='feature' src='/assets/images/1280x720.png' alt='Image on center' cap='A Feature Breakout' %}
+
+#### Popout breakout
+
+A Popout Breakout
+
+{% include figure type='popout' src='/assets/images/1280x720.png' alt='Image on center' cap='A Popout Breakout' %}
 
 #### Float to left
 

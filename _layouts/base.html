@@ -39,7 +39,7 @@
       </header>
 
       <main class="fluid site-content">
-        {{ content }}
+        {{ content | page_modified }}
       </main>
 
       <footer class="fluid grid-breakout pad-b site-footer">
@@ -54,6 +54,6 @@
         </div>
       </footer>
     </div>
-    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/script.js' | relative_url }}" defer></script>
   </body>
 </html>

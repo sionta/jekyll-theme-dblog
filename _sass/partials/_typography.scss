@@ -1,17 +1,32 @@
 /**
  * Typography
  */
+
 .article-body {
+  font-size: clamp(1.125rem, 4vw, 1.25rem);
   font-family: var(--font-serif);
   line-height: 1.6;
 
+  p {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+  }
+
   > p:first-child:first-letter {
     float: left;
-    font-size: clamp(3.2rem, 5vw + 1rem, 4rem);
+    font-size: clamp(3.5rem, 8vw, 3.8rem);
     font-weight: bold;
     line-height: 1;
     margin-bottom: -0.4rem;
     margin-right: 0.4rem;
+  }
+
+  pre,
+  code,
+  kbd,
+  samp {
+    font-size: 0.969rem;
   }
 
   h1,
@@ -21,7 +36,14 @@
   h5,
   h6 {
     font-family: var(--font-sans);
-    letter-spacing: -1.5px;
+    font-weight: 700;
+    letter-spacing: -1.2px;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-weight: 400;
   }
 
   h1 {

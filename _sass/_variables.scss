@@ -2,10 +2,7 @@
 @use "sass:math";
 @use "sass:map";
 @use "helpers/functions" as func;
-
-$color-dark: #0e0f11;
-$color-light: #ffffff;
-
+// Base Colors
 $color-base00: #ffffff;
 $color-base01: #f5f7fa;
 $color-base02: #e4e8f1;
@@ -18,6 +15,7 @@ $color-base08: #1c2433;
 $color-base09: #111827;
 $color-base10: color.mix(#0a0f1b, #010411);
 
+// Grays
 $color-gray-100: #f8f9fa;
 $color-gray-200: #e9ecef;
 $color-gray-300: #dee2e6;
@@ -28,10 +26,7 @@ $color-gray-700: #495057;
 $color-gray-800: #343a40;
 $color-gray-900: #212529;
 
-$color-black: #000000;
-$color-gray: #6c757d;
-$color-white: #ffffff;
-
+// Primary Colors
 $color-red: #dc3545;
 $color-pink: #d63384;
 $color-green: #198754;
@@ -42,9 +37,45 @@ $color-indigo: #6610f2;
 $color-purple: #6f42c1;
 $color-orange: #fd7e14;
 $color-yellow: #ffc107;
+$color-black: #000000;
+$color-gray: #808080;
+$color-white: #ffffff;
 
+// Dark Theme Colors
+$color-dark: #121212;
+$color-dark-background: $color-dark;
+$color-dark-text: #fdfdfd;
+$color-dark-glare: #1a1c20;
+$color-dark-shade: #8c90a1;
+$color-dark-muted: #6c757d;
+$color-dark-border: #2e3039;
+$color-dark-disabled: #212529;
+
+// Light Theme Colors
+$color-light: #fdfdfd;
+$color-light-background: $color-light;
+$color-light-text: #242424;
+$color-light-glare: #f4f6f8;
+$color-light-shade: #6b7084;
+$color-light-muted: #6b6b6b;
+$color-light-border: #e2e3e7;
+$color-light-disabled: #e9ecef;
+
+// Links
+$color-light-link: #0d6efd;
+$color-light-link-hover: #0a58ca;
+$color-dark-link: #6ea8fe;
+$color-dark-link-hover: #8bb9fe;
+
+// Code Block
+$color-light-code-border: $color-light-border;
+$color-light-code-background: #fff;
+$color-dark-code-border: $color-dark-border;
+$color-dark-code-background: $color-dark-glare;
+
+// SCSS Color Schemes
 $color-schemes: (
-  "root": (
+  root: (
     "base00": $color-base00,
     "base01": $color-base01,
     "base02": $color-base02,
@@ -84,35 +115,47 @@ $color-schemes: (
     "orange": $color-orange,
     "yellow": $color-yellow,
   ),
-  "light": (
-    "background-rgb": func.rgb-value($color-light),
-    "background": $color-light,
-    "border-rgb": func.rgb-value(#e2e3e7),
-    "border": #e2e3e7,
-    "glare": #f4f6f8,
-    "shade": #6b7084,
-    "muted": #6b6b6b,
-    "disabled": #e9ecef,
-    "text-rgb": func.rgb-value($color-dark),
-    "text": $color-dark,
-    "primary": #4c54d2,
+
+  light: (
+    "background-rgb": func.rgb-value($color-light-background),
+    "background": $color-light-background,
+    "text-rgb": func.rgb-value($color-light-text),
+    "text": $color-light-text,
+    "border": $color-light-border,
+    "glare": $color-light-glare,
+    "shade": $color-light-shade,
+    "muted": $color-light-muted,
+    "disabled": $color-light-disabled,
+
+    "primary": #6c71c4,
     "secondary": #565a9c,
     "tertiary": #404375,
+    "link": $color-light-link,
+    "link-hover": $color-light-link-hover,
+
+    "code-border": $color-light-code-border,
+    "code-background": $color-light-code-background,
   ),
-  "dark": (
-    "background-rgb": func.rgb-value($color-dark),
-    "background": $color-dark,
-    "border-rgb": func.rgb-value(#2e3039),
-    "border": #2e3039,
-    "glare": #1a1c20,
-    "shade": #8c90a1,
-    "muted": #6c757d,
-    "disabled": #212529,
-    "text-rgb": func.rgb-value($color-light),
-    "text": $color-light,
-    "primary": #737ade,
+
+  dark: (
+    "background-rgb": func.rgb-value($color-dark-background),
+    "background": $color-dark-background,
+    "text-rgb": func.rgb-value($color-dark-text),
+    "text": $color-dark-text,
+    "border": $color-dark-border,
+    "glare": $color-dark-glare,
+    "shade": $color-dark-shade,
+    "muted": $color-dark-muted,
+    "disabled": $color-light-disabled,
+
+    "primary": #6c71c4,
     "secondary": #565a9c,
     "tertiary": #404375,
+    "link": $color-dark-link,
+    "link-hover": $color-dark-link-hover,
+
+    "code-border": $color-dark-code-border,
+    "code-background": $color-dark-code-background,
   ),
 );
 

@@ -2,12 +2,8 @@
 layout: base
 ---
 {%- assign date_format = site.date_format | default: '%b %d, %Y' -%}
-{%- assign page_modified = page.modified_at | default: page.last_modified_at -%}
-{%- assign page_summary = page.summary | default: page.description -%}
-{%- assign page_author = page.author | default: site.author -%}
+{%- assign page_modified = page.date_modified | default: modified_at | default: page.last_modified_at -%}
 {%- assign read_time = page.content | number_of_words | divided_by: 180 -%}
-{%- assign page_image = page.image.src | default: page.image -%}
-{%- assign page_image_alt = page.image.alt | default: page.title -%}
 {%- assign page_tags = page.tag | default: page.tags -%}
 {%- assign page_categories = page.category | default: page.categories -%}
 {%- assign page_repo = site.repository.repo -%}
@@ -20,25 +16,9 @@ layout: base
   itemid="{{ page.url | absolute_url }}"
 >
   <header class="fluid grid-breakout pad-b header">
-    <div class="feature banner">
+    <div class="popout banner">
       <meta itemprop="keywords" content="{{ page_tags | join: ', ' }}, {{ page_categories | join: ', ' }}">
-      <h1 class="heading" itemprop="headline">{{ page.title }}</h1>
-      {%- if page_summary -%}
-        <p class="summary" itemprop="description">{{- page_summary -}}</p>
-      {%- endif -%}
-      <div class="metadata">
-        {%- if page_author -%}
-          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-            {%- if page_author.name and page_author.url -%}
-              <a itemprop="url" href="{{ page_author.url | relative_url }}">
-                <span itemprop="name">{{ page_author.name }}</span>
-              </a>
-            {%- else -%}
-              <span itemprop="name">{{ page_author }}</span>
-            {%- endif -%}
-          </span>
-          <span class="dot">·</span>
-        {%- endif -%}
+      <div class="datetime">
         <time class="date" itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
           {{- page.date | date: date_format -}}
         </time>
@@ -54,32 +34,64 @@ layout: base
             {{- read_time | append: ' min read' -}}
           </span>
         {%- endif -%}
-        {%- if page_repo and page_branch -%}
-          <a
-            class="edit-page"
-            href="https://github.com/{{- page_repo -}}/edit/{{- page_branch -}}/{{- page.path -}}"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Edit this page</a
-          >
+      </div>
+      <div class="metadata">
+        <h1 class="heading" itemprop="headline">{{ page.title }}</h1>
+        {%- if page.summary or page.description -%}
+          <p class="summary" itemprop="description">{{- page.summary | default: page.description -}}</p>
         {%- endif -%}
       </div>
+      {%- if page.author -%}
+        {%- for author in page.author -%}
+          {%- assign data_author = site.data.authors[author] -%}
+          {%- if data_author -%}
+            {%- if forloop.first -%}
+              {{- '<div class="authors">' -}}
+            {%- endif -%}
+            <span class="author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+              {%- if data_author.name and data_author.url -%}
+                <a itemprop="url" href="{{ data_author.url | relative_url }}">
+                  <span itemprop="name">{{ data_author.name }}</span>
+                  {%- unless forloop.last -%}{{- ', ' -}}{%- endunless -%}
+                </a>
+              {%- elsif author and data_author.url -%}
+                <a itemprop="url" href="{{ data_author.url | relative_url }}">
+                  <span itemprop="name">{{ author | capitalize }}</span>
+                  {%- unless forloop.last -%}{{- ', ' -}}{%- endunless -%}
+                </a>
+              {%- else -%}
+                <span itemprop="name">{{ author | capitalize }}</span>
+                {%- unless forloop.last -%}{{- ', ' -}}{%- endunless -%}
+              {%- endif -%}
+            </span>
+            {%- if forloop.last -%}
+              {%- if page_repo and page_branch -%}
+                <a
+                  class="edit-page"
+                  href="https://github.com/{{- page_repo -}}/edit/{{- page_branch -}}/{{- page.path -}}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Edit this page</a
+                >
+              {%- endif -%}
+              {{- '</div>' -}}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </header>
   {%- if page.image -%}
     <figure
-      class="fluid grid-breakout figure"
+      class="fluid grid-breakout"
       itemprop="associatedMedia"
       itemscope
       itemtype="https://schema.org/ImageObject"
     >
-      <img class="feature image" src="{{ page_image | relative_url }}" alt="{{ page_image_alt }}" loading="lazy">
-      <meta itemprop="url" content="{{ page_image | absolute_url }}">
-      {%- comment -%} <meta itemprop="width" content="800"> {%- endcomment -%}
-      {%- comment -%} <meta itemprop="height" content="600"> {%- endcomment -%}
+      {%- include image.html data=page class='popout' -%}
     </figure>
   {%- endif -%}
-  <section class="content mrg-b article-body" itemprop="articleBody">
+  <section class="fluid grid-breakout article-body" itemprop="articleBody">
     {{ content }}
   </section>
   {%- include social-share.html -%}

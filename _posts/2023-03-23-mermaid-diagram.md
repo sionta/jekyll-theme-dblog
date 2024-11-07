@@ -3,7 +3,7 @@ layout: post
 title: "Mermaid.js: Build Complex Diagrams with Simple Text Descriptions"
 categories: [test]
 tags: [mermaid]
-author: Andre Attamimi
+author: [sionta]
 image: /assets/images/posts/mermaid-diagram.png
 toc: true
 diagram: true

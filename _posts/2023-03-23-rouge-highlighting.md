@@ -3,7 +3,10 @@ layout: post
 title: "Code Highlighting with Rouge"
 categories: [test]
 tags: [jekyll, rouge]
-image: /assets/images/posts/rouge-thumb.png
+author: [sionta]
+image:
+  path: /assets/images/posts/rouge-thumb.png
+  alt: Rouge
 featured: true
 toc: true
 ---
@@ -53,7 +56,7 @@ This block is displayed without any syntax-specific colors or formatting.
 
 ### Line Numbers
 
-By default, line numbers are not shown. To include line numbers, add the attribute class `{: .lineno }` before or after the code block:
+By default, line numbers are not shown. To include line numbers, add the attribute class `{: .d-lineno }` before or after the code block:
 
 **Sample:**
 
@@ -66,7 +69,7 @@ By default, line numbers are not shown. To include line numbers, add the attribu
   "age": 25
 }
 ```
-{:.lineno} <!-- like this -->
+{:.d-lineno} <!-- like this -->
 ````
 
 **Output:**
@@ -79,7 +82,7 @@ By default, line numbers are not shown. To include line numbers, add the attribu
   "age": 25
 }
 ```
-{:.lineno}
+{:.d-lineno}
 
 This will enable line numbering in the highlighted code block.
 

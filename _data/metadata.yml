@@ -1,0 +1,88 @@
+# By default, icons use Tabler Icons: https://tabler.io/icons,
+# which are converted to SVG symbols when using an icon name or symbol ID.
+
+alerts:
+  default:
+    name: Quote
+    icon: quote
+  note:
+    type: 1
+    name: Info
+    icon: info-circle
+  tip:
+    type: 2
+    name: Tip
+    icon: bulb
+  important:
+    type: 3
+    name: Important
+    icon: message-report
+  warning:
+    type: 3
+    name: Warning
+    icon: alert-triangle
+  caution:
+    type: 3
+    name: Danger
+    icon: alert-hexagon
+
+codes:
+  buttons:
+    copy:
+      name: Copy
+      icon: copy
+    success:
+      name: Copied!
+      icon: check
+    error:
+      name: Whoops, error!
+      icon: x
+  languages:
+    - name: Text
+      icon: file
+      alias: [txt, text, plain, plaintext]
+    - name: HTML
+      icon: brand-html5
+      alias: [mhtml, html]
+    - name: SASS
+      icon: brand-sass
+      alias: [sass, scss]
+    - name: CSS
+      icon: brand-css3
+      alias: [css, css3, style, stylesheet]
+    - name: Markdown
+      icon: markdown
+      alias: [md, mdx, markdown, kramdown]
+    - name: JavaScript
+      icon: brand-javascript
+      alias: [js, javascript]
+    - name: TypeScript
+      icon: brand-typescript
+      alias: [ts, tsx, typescript]
+    - name: PHP
+      icon: brand-php
+      alias: [php, php3, php4, php5]
+    - name: Ruby
+      icon: diamond
+      alias: [rb, ruby]
+    - name: Python
+      icon: brand-python
+      alias: [py, python]
+    - name: JSON
+      icon: braces
+      alias: [json]
+    - name: XML
+      icon: code
+      alias: [xml]
+    - name: YAML
+      icon: file-settings
+      alias: [yaml, yml]
+    - name: TOML
+      icon: file-settings
+      alias: [toml]
+    - name: Shell
+      icon: terminal-2
+      alias: [sh, zsh, ksh, shell, bash]
+    - name: Terminal
+      icon: brand-powershell
+      alias: [ps1, bat, cmd, batch, command, prompt, pwsh, powershell]

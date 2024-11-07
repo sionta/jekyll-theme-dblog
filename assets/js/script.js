@@ -8,34 +8,6 @@
         : "light");
   };
 
-  const zoomImages = () => {
-    // document.querySelectorAll("img").forEach((img) => {
-    //   img.classList.add("zoomable");
-    // });
-
-    const images = document.querySelectorAll(".zoomable");
-
-    images.forEach((image) => {
-      let isZoomed = false;
-
-      // Function to toggle zoom
-      function toggleZoom() {
-        isZoomed = !isZoomed;
-        image.classList.toggle("zoomed", isZoomed);
-      }
-
-      // Handle image click
-      image.addEventListener("click", toggleZoom);
-
-      // Handle scroll event to revert zoom
-      window.addEventListener("scroll", function () {
-        if (isZoomed) {
-          toggleZoom(); // Revert zoom on scroll
-        }
-      });
-    });
-  };
-
   const activeNavbar = () => {
     const menuToggle = document.querySelector("#menu-toggle");
     const menuBurger = document.querySelector(".menu-burger");
@@ -207,24 +179,10 @@
     }
   };
 
-  // const scrollTriggerHeight = 310;
-
-  // window.addEventListener("scroll", function () {
-  //   const scrollPosition = window.scrollY;
-  //   const header = document.querySelector(".site-header");
-
-  //   if (scrollPosition >= scrollTriggerHeight) {
-  //     header.classList.add("actived");
-  //   } else {
-  //     header.classList.remove("actived");
-  //   }
-  // });
-
-  window.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     activeNavbar();
     searchPost();
     copyClipboard();
     mermaidDiagram();
-    // zoomImages();
   });
 })();

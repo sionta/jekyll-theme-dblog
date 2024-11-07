@@ -1,9 +1,9 @@
 @use "sass:map";
 
-@mixin css-vars($map, $key, $prefix: "--") {
+@mixin css-vars($map, $key, $prefix: "") {
   @if map.get($map, $key) {
     @each $key, $value in map.get($map, $key) {
-      #{$prefix}#{$key}: #{$value};
+      --#{$prefix}#{$key}: #{$value};
     }
   } @else {
     @error "Error map.get($map, $key)";

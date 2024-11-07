@@ -1,0 +1,8 @@
+{% assign data = include.data | default: page %}
+{% assign class = include.class | prepend: 'image ' | strip %}
+{% assign src = data.image.path | default: data.image | relative_url %}
+{% assign alt = data.image.alt | default: data.title %}
+{% assign width = data.image.width %}
+{% assign height = data.image.height %}
+<!-- prettier-ignore -->
+{% if data.image %}<img class="{{ class }}" src="{{ src }}" alt="{{ alt }}"{% if width %} width="{{ width }}"{% endif %}{% if height %} height="{{ height }}"{% endif %}>{% endif %}
