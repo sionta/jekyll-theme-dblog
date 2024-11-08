@@ -1,3 +1,6 @@
+@use "../helpers/functions" as func;
+@use "../helpers/mixins" as util;
+
 .code-blocks {
   background-color: var(--color-tertiary-bg);
   border: 1px solid var(--color-border);
@@ -13,28 +16,43 @@
   background-color: var(--color-background);
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text);
+  padding: var(--space-01) var(--space-code);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-01) var(--space-code);
+  letter-spacing: -1px;
+  line-height: 1.15;
+
+  svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: var(--space-01);
+  }
 
   .code-header__title {
+    display: inline;
     color: inherit;
 
     &::after {
       content: attr(data-name);
     }
-
-    svg {
-      margin-right: var(--space-01);
-    }
   }
 
   .code-header__button {
     cursor: pointer;
-    background: none;
-    border: none;
-    color: inherit;
+    font: inherit;
+
+    &,
+    &:hover,
+    &:focus {
+      background: none;
+      border-radius: 0;
+      border: none;
+      color: inherit;
+      padding: 0;
+    }
 
     .icon-copy {
       display: inline;
@@ -45,12 +63,7 @@
     }
 
     &::after {
-      margin-left: var(--space-01);
       content: attr(data-label-copy);
-    }
-
-    &[data-feedback="error"]::after {
-      content: "Error!";
     }
 
     &[data-feedback="success"] {
@@ -66,6 +79,14 @@
         display: inline;
       }
     }
+
+    &[data-feedback="error"] {
+      color: var(--color-red);
+
+      &::after {
+        content: "Error!";
+      }
+    }
   }
 }
 
@@ -74,14 +95,22 @@
 
   pre {
     background: none;
+    border-radius: 0;
     border: none;
     color: inherit;
+    font: inherit;
     margin: 0;
   }
 
   .rouge-gutter {
-    overflow-x: unset;
+    background-color: var(--color-background);
     border-right: 1px solid var(--color-border);
+    overflow-x: hidden;
+    text-align: right;
+    width: max-content;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
   }
 }
 
@@ -97,7 +126,6 @@
  *
  * For more see _posts/2023-03-23-rouge-highlighting.md
  */
-
 .rouge-gutter,
 .gutter {
   display: none; /* 1 */

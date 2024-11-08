@@ -5,6 +5,6 @@ layout: base
   <div class="feature hero">
     <h1>{{- site.hero.heading | default: site.title -}}</h1>
     <p>{{- site.hero.summary | default: site.description -}}</p>
-    <a role="button" href="{{ '/blog/' | relative_url }}">Start reading</a>
+    <a role="button" href="{{ '/blog/' | relative_url }}">{{ site.hero.button }}</a>
   </div>
 </section>

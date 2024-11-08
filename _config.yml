@@ -19,9 +19,18 @@ social:
 # If enabled `true` and not defined heading and summary by default, use `site.title` and `site.description`.
 hero:
   # (h1) Main heading text for the hero section.
-  heading: Jekyll theme <a class="dummy" href="https://github.com/sionta/jekyll-theme-dblog">dBlog</a>.
+  heading: >-
+    Jekyll theme <a href="https://github.com/sionta/jekyll-theme-dblog">dBlog</a>.
+
   # (p): A short description shown below the hero heading.
-  summary: Just read, write, and share your story.
+  summary: >-
+    Just <em>read</em>, <em>write</em>, & <em>share</em> your story.
+
+  # (a): A text link direction .
+  button: Start reading
+
+# SVGSprite path by default '/assets/icons.svg'.
+icons: "/assets/icons.svg"
 
 navbar:
   - title: "Articles"

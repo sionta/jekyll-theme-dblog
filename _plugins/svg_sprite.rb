@@ -29,13 +29,11 @@ module Jekyll
 
       site = context.registers[:site]
       baseurl = site.config['baseurl'] || ''
-      svg_base = File.join('assets', 'icons.svg')
-      svg_path = File.join(site.source, svg_base)
+      svg_file = site.config['icons'] || File.join('assets', 'icons.svg')
+      svg_path = File.join(site.source, svg_file)
+      svg_path_id = "#{File.join(baseurl, svg_file)}##{svg_id}"
 
       raise "SVG sprite file not found: '#{svg_path}'" unless File.exist?(svg_path)
-
-      svg_url = File.join(baseurl, svg_base)
-      svg_path_with_id = "#{svg_url}##{svg_id}".downcase
 
       svg_attrs = {
         'xmlns' => 'http://www.w3.org/2000/svg',
@@ -52,8 +50,8 @@ module Jekyll
         svg_attrs[key] = value
       end
 
-      svg_attrs_string = svg_attrs.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')
-      %(<svg #{svg_attrs_string}><use xlink:href="#{svg_path_with_id}" /></svg>)
+      inline_attrs = svg_attrs.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')
+      %(<svg #{inline_attrs}><use xlink:href="#{svg_path_id}" /></svg>)
     end
   end
 

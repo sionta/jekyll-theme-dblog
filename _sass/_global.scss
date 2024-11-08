@@ -432,11 +432,13 @@ pre {
       &[class*="gutter"] {
         background-color: var(--color-background);
         border-right: 1px solid var(--color-border);
-        width: max-content;
+        overflow-x: hidden;
         text-align: right;
+        width: max-content;
         -webkit-user-select: none;
         -moz-user-select: none;
         user-select: none;
+
         position: sticky;
         left: 0;
         align-self: flex-start;

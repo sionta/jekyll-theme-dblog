@@ -253,6 +253,19 @@
     align-items: center;
     justify-content: center;
   }
+
+  .article-body {
+    font-family: var(--font-sans);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 400;
+    }
+  }
 }
 
 .post {
@@ -348,12 +361,4 @@ p:has(.img) {
   color: currentColor;
   display: inline-block;
   vertical-align: text-bottom;
-}
-
-.katex-display {
-  margin-bottom: var(--space-unit);
-
-  .katex-html {
-    display: none;
-  }
 }

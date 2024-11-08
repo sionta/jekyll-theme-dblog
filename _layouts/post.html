@@ -94,7 +94,9 @@ layout: base
   <section class="fluid grid-breakout article-body" itemprop="articleBody">
     {{ content }}
   </section>
-  {%- include social-share.html -%}
-  {%- include pagination.html -%}
-  {%- include comments.html -%}
+  <footer class="content footer">
+    {%- include pagination.html -%}
+    {%- include social-share.html -%}
+    {%- include comments.html -%}
+  </footer>
 </article>
