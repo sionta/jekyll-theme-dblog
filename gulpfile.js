@@ -20,7 +20,7 @@ gulp.task("minify-html", () => {
   return gulp
     .src(paths.html)
     .pipe(plumber({ errorHandler: (err) => console.error(err) }))
-    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest(paths.root))
     .on("end", () => logCompletion("minify-html"));
 });
@@ -29,7 +29,9 @@ gulp.task("minify-css", () => {
   return gulp
     .src(paths.css)
     .pipe(plumber({ errorHandler: (err) => console.error(err) }))
-    .pipe(cleanCSS({ compatibility: "ie8" }))
+    .pipe(
+      cleanCSS({ compatibility: "ie8", level: { 1: { specialComments: 0 } } })
+    )
     .pipe(
       gulp.dest((file) => {
         const relativePath = path.relative(path.resolve(paths.root), file.base);
