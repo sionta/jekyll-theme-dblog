@@ -6,7 +6,11 @@
   {% assign PROVIDER_ID = 'post-comment' %}
 {% endif %}
 {% if page.comments == true and PROVIDER_NAME.size > 0 %}
-  <div id="{{ PROVIDER_ID }}" class="comment {{ PROVIDER_NAME }}" itemscope itemtype="https://schema.org/Comment"></div>
+  <div
+    id="{{ PROVIDER_ID }}"
+    class="comment {{ PROVIDER_NAME }}"
+    itemscope
+    itemtype="https://schema.org/Comment"></div>
   {% case PROVIDER_NAME %}
     {% when 'disqus' %}
       <script>
@@ -14,7 +18,7 @@
           this.page.url = '{{ page.url | absolute_url }}';
           this.page.identifier = '{{ page.id }}';
         };
-
+        
         (function () {
           var d = document,
             s = d.createElement('script');
@@ -22,7 +26,7 @@
           s.setAttribute('data-timestamp', +new Date());
           (d.head || d.body).appendChild(s);
         })();
-
+        
         // Event listener for theme changes
         window.addEventListener('message', (event) => {
           if (event.data.themeChange && typeof DISQUS !== 'undefined') {
@@ -30,21 +34,20 @@
           }
         });
       </script>
-      <noscript
-        >Please enable JavaScript to view the
-        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
-      >
+      <noscript>Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+      </noscript>
     {% when 'giscus' %}
       <script>
         (() => {
           let giscusTheme =
             localStorage.getItem('theme') ||
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
+        
           if (giscusTheme === 'dark') {
             giscusTheme = giscusTheme + '_dimmed';
           }
-
+        
           const giscusAttributes = {
             src: 'https://giscus.app/client.js',
             'data-repo': '{{ PROVIDER_DATA.repo }}',
@@ -55,19 +58,19 @@
             'data-strict': '{{ PROVIDER_DATA.strict | default: 0 }}',
             'data-reactions-enabled': '{{ PROVIDER_DATA.reactions-enabled | default: 1 }}',
             'data-emit-metadata': '{{ PROVIDER_DATA.metadata | default: 0 }}',
-            'data-input-position': "{{ PROVIDER_DATA.input-position | default: 'bottom' }}"
+            'data-input-position': "{{ PROVIDER_DATA.input-position | default: 'bottom' }}",
             'data-theme': giscusTheme || 'preferred_color_scheme',
             'data-lang': "{{ PROVIDER_DATA.lang | default: site.lang | default: 'en' }}",
             'data-loading': 'lazy',
             crossorigin: 'anonymous',
             async: true,
           };
-
+        
           const giscusScript = document.createElement('script');
           Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
           document.getElementById('{{ PROVIDER_ID }}').appendChild(giscusScript);
         })();
-
+        
         window.addEventListener('message', (event) => {
           const theme = event.data.themeChange;
           const frame = document.querySelector('.giscus-frame');
@@ -79,15 +82,15 @@
     {% when 'utterances' %}
       <script>
         (() => {
-
+        
           let utterancesTheme =
             localStorage.getItem('theme') ||
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
+        
           if (utterancesTheme) {
             utterancesTheme = 'github-' + utterancesTheme;
           }
-
+        
           const utterancesAttributes = {
             src: 'https://utteranc.es/client.js',
             label: '{{ PROVIDER_DATA.label | default: 'Q&A' }}',
@@ -97,12 +100,12 @@
             crossorigin: 'anonymous',
             async: true,
           };
-
+        
           const utterancesScript = document.createElement('script');
           Object.entries(utterancesAttributes).forEach(([key, value]) => utterancesScript.setAttribute(key, value));
           document.getElementById('{{ PROVIDER_ID }}').appendChild(utterancesScript);
         })();
-
+        
         window.addEventListener('message', (event) => {
           const theme = event.data.themeChange;
           const frame = document.querySelector('.utterances-frame');
